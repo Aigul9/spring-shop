@@ -9,12 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "categories")
 public class Category {
 
     @Id
@@ -22,8 +24,4 @@ public class Category {
     private Long id;
 
     private String name;
-
-    public Category(String name) {
-        this.name = name;
-    }
 }
