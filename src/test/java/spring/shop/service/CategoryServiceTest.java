@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import spring.shop.api.v1.dto.CategoryDTO;
 import spring.shop.api.v1.mapper.CategoryMapper;
 import spring.shop.model.Category;
@@ -18,6 +20,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest(classes = CategoryMapper.class)
 class CategoryServiceTest {
 
     private static final Long ID = 1L;
@@ -28,9 +31,12 @@ class CategoryServiceTest {
     @Mock
     CategoryRepository categoryRepository;
 
+    @Autowired
+    CategoryMapper categoryMapper;
+
     @BeforeEach
     void setUp() {
-        categoryService = new CategoryServiceImpl(CategoryMapper.INSTANCE, categoryRepository);
+        categoryService = new CategoryServiceImpl(categoryMapper, categoryRepository);
     }
 
     @Test

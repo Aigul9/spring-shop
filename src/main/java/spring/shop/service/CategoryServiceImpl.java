@@ -1,14 +1,17 @@
 package spring.shop.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import spring.shop.api.v1.dto.CategoryDTO;
 import spring.shop.api.v1.mapper.CategoryMapper;
+import spring.shop.model.Category;
 import spring.shop.repository.CategoryRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryMapper categoryMapper;
@@ -30,6 +33,9 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public CategoryDTO getCategoryByName(String name) {
+
+        Category category = categoryRepository.findByName(name);
+        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
         return categoryMapper.categoryToCategoryDTO(categoryRepository.findByName(name));
     }
 }
