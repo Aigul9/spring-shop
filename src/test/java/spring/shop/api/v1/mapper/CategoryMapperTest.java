@@ -9,20 +9,17 @@ import static org.junit.jupiter.api.Assertions.*;
 class CategoryMapperTest {
 
     CategoryMapper categoryMapper = CategoryMapper.INSTANCE;
-    private static final Long id = 1L;
-    private static final String name = "Name";
+    private static final Long ID = 1L;
+    private static final String NAME = "Name";
 
     @Test
     void categoryToCategoryDTO() {
-        //given
-        Category category = new Category(id, name);
-        
-        //when
+        Category category = new Category(ID, NAME);
+
         CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
 
-        //then
         assertNotNull(categoryDTO);
-        assertEquals(id, categoryDTO.getId());
-        assertEquals(name, categoryDTO.getName());
+        assertEquals(ID, categoryDTO.getId());
+        assertEquals(NAME, categoryDTO.getName());
     }
 }
