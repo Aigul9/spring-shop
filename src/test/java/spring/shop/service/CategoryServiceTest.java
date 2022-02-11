@@ -52,7 +52,7 @@ class CategoryServiceTest {
     @Test
     void getCategoryByName() {
         Category category = new Category(ID, NAME);
-        when(categoryRepository.findByName(anyString())).thenReturn(category);
+        when(categoryRepository.findByNameIgnoreCase(anyString())).thenReturn(category);
 
         CategoryDTO categoryDTO = categoryService.getCategoryByName(NAME);
 
