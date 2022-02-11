@@ -11,6 +11,7 @@ import spring.shop.api.v1.dto.CategoryDTO;
 import spring.shop.api.v1.mapper.CategoryMapper;
 import spring.shop.model.Category;
 import spring.shop.repository.CategoryRepository;
+import spring.shop.service.impl.CategoryServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,7 +24,6 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = CategoryMapper.class)
 class CategoryServiceTest {
 
-    private static final Long ID = 1L;
     private static final String NAME = "Name";
 
     CategoryService categoryService;
@@ -51,12 +51,11 @@ class CategoryServiceTest {
 
     @Test
     void getCategoryByName() {
-        Category category = new Category(ID, NAME);
+        Category category = new Category(NAME);
         when(categoryRepository.findByNameIgnoreCase(anyString())).thenReturn(category);
 
         CategoryDTO categoryDTO = categoryService.getCategoryByName(NAME);
 
-        assertEquals(ID, categoryDTO.getId());
         assertEquals(NAME, categoryDTO.getName());
     }
 }

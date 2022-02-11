@@ -1,4 +1,4 @@
-package spring.shop.service;
+package spring.shop.service.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -6,6 +6,7 @@ import spring.shop.api.v1.dto.CategoryDTO;
 import spring.shop.api.v1.mapper.CategoryMapper;
 import spring.shop.model.Category;
 import spring.shop.repository.CategoryRepository;
+import spring.shop.service.CategoryService;
 
 import java.util.List;
 import java.util.stream.Collectors;

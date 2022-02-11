@@ -27,7 +27,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(MockitoExtension.class)
 class CategoryControllerTest {
 
-    private static final Long ID = 1L;
     private static final String NAME = "Name";
 
     @Mock
@@ -44,9 +43,9 @@ class CategoryControllerTest {
     }
 
     @Test
-    public void testListCategories() throws Exception {
-        CategoryDTO cat1 = new CategoryDTO(ID, NAME),
-                cat2 = new CategoryDTO(2L, "Name2");
+    public void testGetAllCategories() throws Exception {
+        CategoryDTO cat1 = new CategoryDTO(NAME),
+                cat2 = new CategoryDTO("Name2");
 
         List<CategoryDTO> categories = Arrays.asList(cat1, cat2);
 
@@ -60,7 +59,7 @@ class CategoryControllerTest {
 
     @Test
     public void testGetCategoryByName() throws Exception {
-        CategoryDTO cat1 = new CategoryDTO(ID, NAME);
+        CategoryDTO cat1 = new CategoryDTO(NAME);
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(cat1);
 
