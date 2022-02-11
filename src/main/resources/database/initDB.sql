@@ -3,3 +3,10 @@ CREATE TABLE IF NOT EXISTS categories
     id    SERIAL PRIMARY KEY ,
     name  VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS customers
+(
+    id    SERIAL PRIMARY KEY ,
+    firstName  VARCHAR(255) NOT NULL,
+    lastName  VARCHAR(255) NOT NULL
+);
