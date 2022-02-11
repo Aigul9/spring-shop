@@ -14,17 +14,15 @@ class CategoryMapperTest {
     @Autowired
     CategoryMapper categoryMapper;
 
-    private static final Long ID = 1L;
     private static final String name = "Name";
 
     @Test
     void categoryToCategoryDTO() {
-        Category category = new Category(ID, name);
+        Category category = new Category(name);
 
         CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
 
         assertNotNull(categoryDTO);
-        assertEquals(ID, categoryDTO.getId());
         assertEquals(name, categoryDTO.getName());
     }
 }

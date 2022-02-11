@@ -8,9 +8,6 @@ import spring.shop.model.Category;
 public class CategoryMapper {
 
     public CategoryDTO categoryToCategoryDTO(Category category) {
-        return new CategoryDTO(
-                category.getId(),
-                category.getName()
-        );
+        return new CategoryDTO(category.getName());
     }
 }
