@@ -3,7 +3,7 @@ package spring.shop.api.v1.mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import spring.shop.api.v1.dto.CustomerDTO;
+import spring.shop.api.v1.dto.CustomerDto;
 import spring.shop.model.Customer;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -22,7 +22,7 @@ public class CustomerMapperTest {
     void customerToCustomerDTO() {
         Customer customer = new Customer(FIRST_NAME, LAST_NAME);
 
-        CustomerDTO customerDTO = customerMapper.customerToCustomerDTO(customer);
+        CustomerDto customerDTO = customerMapper.customerToCustomerDto(customer);
 
         assertNotNull(customerDTO);
         assertEquals(FIRST_NAME, customerDTO.getFirstName());

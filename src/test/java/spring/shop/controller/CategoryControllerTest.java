@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import spring.shop.api.v1.dto.CategoryDTO;
+import spring.shop.model.Category;
 import spring.shop.service.CategoryService;
 
 import java.util.Arrays;
@@ -44,10 +44,10 @@ class CategoryControllerTest {
 
     @Test
     public void testGetAllCategories() throws Exception {
-        CategoryDTO cat1 = new CategoryDTO(NAME),
-                cat2 = new CategoryDTO("Name2");
+        Category cat1 = new Category(NAME),
+                cat2 = new Category("Name2");
 
-        List<CategoryDTO> categories = Arrays.asList(cat1, cat2);
+        List<Category> categories = Arrays.asList(cat1, cat2);
 
         when(categoryService.getAllCategories()).thenReturn(categories);
 
@@ -59,7 +59,7 @@ class CategoryControllerTest {
 
     @Test
     public void testGetCategoryByName() throws Exception {
-        CategoryDTO cat1 = new CategoryDTO(NAME);
+        Category cat1 = new Category(NAME);
 
         when(categoryService.getCategoryByName(anyString())).thenReturn(cat1);
 

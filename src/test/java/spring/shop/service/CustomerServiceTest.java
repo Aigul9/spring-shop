@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import spring.shop.api.v1.dto.CustomerDTO;
 import spring.shop.api.v1.mapper.CustomerMapper;
 import spring.shop.model.Customer;
 import spring.shop.repository.CustomerRepository;
@@ -38,7 +37,7 @@ class CustomerServiceTest {
 
     @BeforeEach
     void setUp() {
-        customerService = new CustomerServiceImpl(customerMapper, customerRepository);
+        customerService = new CustomerServiceImpl(customerRepository);
     }
 
     @Test
@@ -46,9 +45,9 @@ class CustomerServiceTest {
         List<Customer> customers = Arrays.asList(new Customer(), new Customer(), new Customer());
         when(customerRepository.findAll()).thenReturn(customers);
 
-        List<CustomerDTO> customerDTOS = customerService.getAllCustomers();
+        List<Customer> res = customerService.getAllCustomers();
 
-        assertEquals(3, customerDTOS.size());
+        assertEquals(3, res.size());
     }
 
     @Test
@@ -56,9 +55,9 @@ class CustomerServiceTest {
         Customer customer = new Customer(FIRST_NAME, LAST_NAME);
         when(customerRepository.findById(anyLong())).thenReturn(Optional.of(customer));
 
-        CustomerDTO customerDTO = customerService.getCustomerById(1L);
+        Customer res = customerService.getCustomerById(1L);
 
-        assertEquals(FIRST_NAME, customerDTO.getFirstName());
-        assertEquals(LAST_NAME, customerDTO.getLastName());
+        assertEquals(FIRST_NAME, res.getFirstName());
+        assertEquals(LAST_NAME, res.getLastName());
     }
 }

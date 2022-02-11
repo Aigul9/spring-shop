@@ -2,14 +2,14 @@ package spring.shop.service;
 
 
 import org.springframework.stereotype.Service;
-import spring.shop.api.v1.dto.CategoryDTO;
+import spring.shop.model.Category;
 
 import java.util.List;
 
 @Service
 public interface CategoryService {
 
-    List<CategoryDTO> getAllCategories();
+    List<Category> getAllCategories();
 
-    CategoryDTO getCategoryByName(String name);
+    Category getCategoryByName(String name);
 }

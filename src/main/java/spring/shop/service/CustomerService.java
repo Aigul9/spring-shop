@@ -1,14 +1,16 @@
 package spring.shop.service;
 
 import org.springframework.stereotype.Service;
-import spring.shop.api.v1.dto.CustomerDTO;
+import spring.shop.model.Customer;
 
 import java.util.List;
 
 @Service
 public interface CustomerService {
 
-    List<CustomerDTO> getAllCustomers();
+    List<Customer> getAllCustomers();
 
-    CustomerDTO getCustomerById(Long id);
+    Customer getCustomerById(Long id);
+
+    Customer createNewCustomer(Customer customer);
 }

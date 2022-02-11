@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import spring.shop.api.v1.dto.CategoryDTO;
+import spring.shop.model.Category;
 import spring.shop.service.CategoryService;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() {
+    public ResponseEntity<List<Category>> getAllCategories() {
         return new ResponseEntity<>(
                 categoryService.getAllCategories(),
                 HttpStatus.OK
@@ -30,7 +30,7 @@ public class CategoryController {
     }
 
     @GetMapping("{name}")
-    public ResponseEntity<CategoryDTO> getCategoryByName(@PathVariable String name) {
+    public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
         return new ResponseEntity<>(
                 categoryService.getCategoryByName(name),
                 HttpStatus.OK);

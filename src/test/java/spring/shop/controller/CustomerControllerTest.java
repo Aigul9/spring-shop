@@ -10,7 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import spring.shop.api.v1.dto.CustomerDTO;
+import spring.shop.model.Customer;
 import spring.shop.service.CustomerService;
 
 import java.util.Arrays;
@@ -29,7 +29,6 @@ class CustomerControllerTest {
 
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
-    private static final String URL = "url";
 
     @Mock
     CustomerService customerService;
@@ -46,10 +45,10 @@ class CustomerControllerTest {
 
     @Test
     void testGetAllCustomers() throws Exception {
-        CustomerDTO customer1 = new CustomerDTO(FIRST_NAME, LAST_NAME, URL),
-                customer2 = new CustomerDTO("firstName2", "lastName2", "url2");
+        Customer customer1 = new Customer(FIRST_NAME, LAST_NAME),
+                customer2 = new Customer("firstName2", "lastName2");
 
-        List<CustomerDTO> customers = Arrays.asList(customer1, customer2);
+        List<Customer> customers = Arrays.asList(customer1, customer2);
 
         when(customerService.getAllCustomers()).thenReturn(customers);
 
@@ -61,7 +60,7 @@ class CustomerControllerTest {
 
     @Test
     void testGetCustomerById() throws Exception {
-        CustomerDTO customer1 = new CustomerDTO(FIRST_NAME, LAST_NAME, URL);
+        Customer customer1 = new Customer(FIRST_NAME, LAST_NAME);
 
         when(customerService.getCustomerById(anyLong())).thenReturn(customer1);
 
@@ -69,7 +68,6 @@ class CustomerControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect((ResultMatcher) jsonPath("$.firstName", equalTo(FIRST_NAME)))
-                .andExpect((ResultMatcher) jsonPath("$.lastName", equalTo(LAST_NAME)))
-                .andExpect((ResultMatcher) jsonPath("$.customerUrl", equalTo(URL)));
+                .andExpect((ResultMatcher) jsonPath("$.lastName", equalTo(LAST_NAME)));
     }
 }

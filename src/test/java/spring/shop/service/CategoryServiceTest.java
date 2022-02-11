@@ -7,7 +7,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import spring.shop.api.v1.dto.CategoryDTO;
 import spring.shop.api.v1.mapper.CategoryMapper;
 import spring.shop.model.Category;
 import spring.shop.repository.CategoryRepository;
@@ -36,7 +35,7 @@ class CategoryServiceTest {
 
     @BeforeEach
     void setUp() {
-        categoryService = new CategoryServiceImpl(categoryMapper, categoryRepository);
+        categoryService = new CategoryServiceImpl(categoryRepository);
     }
 
     @Test
@@ -44,9 +43,9 @@ class CategoryServiceTest {
         List<Category> categories = Arrays.asList(new Category(), new Category(), new Category());
         when(categoryRepository.findAll()).thenReturn(categories);
 
-        List<CategoryDTO> categoryDTOS = categoryService.getAllCategories();
+        List<Category> res = categoryService.getAllCategories();
 
-        assertEquals(3, categoryDTOS.size());
+        assertEquals(3, res.size());
     }
 
     @Test
@@ -54,8 +53,8 @@ class CategoryServiceTest {
         Category category = new Category(NAME);
         when(categoryRepository.findByNameIgnoreCase(anyString())).thenReturn(category);
 
-        CategoryDTO categoryDTO = categoryService.getCategoryByName(NAME);
+        Category res = categoryService.getCategoryByName(NAME);
 
-        assertEquals(NAME, categoryDTO.getName());
+        assertEquals(NAME, res.getName());
     }
 }

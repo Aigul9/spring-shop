@@ -3,7 +3,7 @@ package spring.shop.api.v1.mapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import spring.shop.api.v1.dto.CategoryDTO;
+import spring.shop.api.v1.dto.CategoryDto;
 import spring.shop.model.Category;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +20,7 @@ class CategoryMapperTest {
     void categoryToCategoryDTO() {
         Category category = new Category(name);
 
-        CategoryDTO categoryDTO = categoryMapper.categoryToCategoryDTO(category);
+        CategoryDto categoryDTO = categoryMapper.categoryToCategoryDto(category);
 
         assertNotNull(categoryDTO);
         assertEquals(name, categoryDTO.getName());
