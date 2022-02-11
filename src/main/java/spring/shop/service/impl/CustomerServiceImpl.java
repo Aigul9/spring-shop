@@ -54,4 +54,10 @@ public class CustomerServiceImpl implements CustomerService {
             throw new NoSuchElementException("Customer not found, id: " + id);
         }
     }
+
+    @Override
+    public Long deleteCustomerById(Long id) {
+        customerRepository.deleteById(id);
+        return id;
+    }
 }

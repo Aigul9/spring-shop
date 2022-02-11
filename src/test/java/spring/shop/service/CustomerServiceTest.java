@@ -19,6 +19,8 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -88,5 +90,12 @@ class CustomerServiceTest {
 
         assertEquals(customer.getFirstName(), res.getFirstName());
         assertEquals(customer.getLastName(), res.getLastName());
+    }
+
+    @Test
+    void testDeleteCustomerById() {
+        Long id = 1L;
+        customerService.deleteCustomerById(id);
+        verify(customerRepository, times(1)).deleteById(anyLong());
     }
 }
