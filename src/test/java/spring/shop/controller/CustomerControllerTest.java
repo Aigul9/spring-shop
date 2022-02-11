@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -98,6 +99,24 @@ class CustomerControllerTest {
                         .content(customerString))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)))
+                .andExpect(jsonPath("$.lastName", equalTo(LAST_NAME)));
+    }
+
+    @Test
+    void testUpdateCustomer() throws Exception {
+
+        Customer customer = new Customer(FIRST_NAME, LAST_NAME);
+        customer.setId(1L);
+
+        when(customerService.updateCustomer(anyLong(), any(Customer.class))).thenReturn(customer);
+        String customerString = new ObjectMapper().writeValueAsString(customer);
+
+        mockMvc.perform(put("/api/v1/customers/1")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(customerString))
+                .andDo(MockMvcResultHandlers.print())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", equalTo(FIRST_NAME)))
                 .andExpect(jsonPath("$.lastName", equalTo(LAST_NAME)));
     }

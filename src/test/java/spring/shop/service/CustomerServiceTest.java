@@ -75,4 +75,18 @@ class CustomerServiceTest {
         assertEquals(customer.getFirstName(), res.getFirstName());
         assertEquals(customer.getLastName(), res.getLastName());
     }
+
+    @Test
+    void testUpdateCustomer() {
+        Customer customer = new Customer(FIRST_NAME, LAST_NAME);
+        customer.setId(1L);
+
+        when(customerRepository.findById(anyLong())).thenReturn(Optional.of(customer));
+        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
+
+        Customer res = customerService.updateCustomer(1L, customer);
+
+        assertEquals(customer.getFirstName(), res.getFirstName());
+        assertEquals(customer.getLastName(), res.getLastName());
+    }
 }

@@ -38,4 +38,20 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+
+    @Override
+    public Customer updateCustomer(Long id, Customer customer) {
+
+        Optional<Customer> customerById = customerRepository.findById(id);
+
+        if (customerById.isPresent()) {
+            Customer oldCustomer = customerById.get();
+            oldCustomer.setFirstName(customer.getFirstName());
+            oldCustomer.setLastName(customer.getLastName());
+
+            return customerRepository.save(oldCustomer);
+        } else {
+            throw new NoSuchElementException("Customer not found, id: " + id);
+        }
+    }
 }
