@@ -12,7 +12,7 @@ import spring.shop.service.CategoryService;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1/categories/")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
 
     private final CategoryService categoryService;
@@ -29,7 +29,7 @@ public class CategoryController {
         );
     }
 
-    @GetMapping("{name}")
+    @GetMapping("/{name}")
     public ResponseEntity<Category> getCategoryByName(@PathVariable String name) {
         return new ResponseEntity<>(
                 categoryService.getCategoryByName(name),

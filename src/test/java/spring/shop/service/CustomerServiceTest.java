@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -41,7 +42,7 @@ class CustomerServiceTest {
     }
 
     @Test
-    void getAllCustomers() {
+    void testGetAllCustomers() {
         List<Customer> customers = Arrays.asList(new Customer(), new Customer(), new Customer());
         when(customerRepository.findAll()).thenReturn(customers);
 
@@ -51,7 +52,7 @@ class CustomerServiceTest {
     }
 
     @Test
-    void getCustomerById() {
+    void testGetCustomerById() {
         Customer customer = new Customer(FIRST_NAME, LAST_NAME);
         when(customerRepository.findById(anyLong())).thenReturn(Optional.of(customer));
 
@@ -59,5 +60,19 @@ class CustomerServiceTest {
 
         assertEquals(FIRST_NAME, res.getFirstName());
         assertEquals(LAST_NAME, res.getLastName());
+    }
+
+    @Test
+    void testCreateCustomer() {
+
+        Customer customer = new Customer(FIRST_NAME, LAST_NAME);
+        customer.setId(1L);
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
+
+        Customer res = customerService.createCustomer(customer);
+        
+        assertEquals(customer.getFirstName(), res.getFirstName());
+        assertEquals(customer.getLastName(), res.getLastName());
     }
 }

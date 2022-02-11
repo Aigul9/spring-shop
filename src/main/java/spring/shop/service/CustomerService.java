@@ -12,5 +12,5 @@ public interface CustomerService {
 
     Customer getCustomerById(Long id);
 
-    Customer createNewCustomer(Customer customer);
+    Customer createCustomer(Customer customer);
 }
