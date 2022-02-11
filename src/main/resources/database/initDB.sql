@@ -11,3 +11,9 @@ CREATE TABLE IF NOT EXISTS customers
     first_name  VARCHAR(255) NOT NULL,
     last_name  VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS vendors
+(
+    id    SERIAL PRIMARY KEY ,
+    name  VARCHAR(255) NOT NULL
+);
