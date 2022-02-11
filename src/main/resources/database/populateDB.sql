@@ -5,6 +5,6 @@
 -- ('Exotic'),
 -- ('Nuts');
 
-INSERT INTO customers (firstName, lastName) VALUES
+INSERT INTO customers (first_name, last_name) VALUES
 ('Jane', 'Air'),
 ('Scarlett', 'O`Hara');

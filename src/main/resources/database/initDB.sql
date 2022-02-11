@@ -4,9 +4,10 @@ CREATE TABLE IF NOT EXISTS categories
     name  VARCHAR(255) NOT NULL
 );
 
+--drop table customers;
 CREATE TABLE IF NOT EXISTS customers
 (
     id    SERIAL PRIMARY KEY ,
-    firstName  VARCHAR(255) NOT NULL,
-    lastName  VARCHAR(255) NOT NULL
+    first_name  VARCHAR(255) NOT NULL,
+    last_name  VARCHAR(255) NOT NULL
 );

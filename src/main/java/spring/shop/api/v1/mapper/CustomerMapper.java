@@ -12,7 +12,7 @@ public class CustomerMapper {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setFirstName(customer.getFirstName());
         customerDTO.setLastName(customer.getLastName());
-        customerDTO.setCustomerUrl("api/v1/customers" + customer.getId());
+        customerDTO.setCustomerUrl("api/v1/customers/" + customer.getId());
         return customerDTO;
     }
 }
